@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export function Modal({ largeImageUrl, description, onClick, onClose }) {
+export function Modal({ largeImageUrl, description, onClose }) {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 

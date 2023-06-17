@@ -1,55 +1,53 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
+export function Modal({ largeImageUrl, description, onClick, onClose }) {
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
 
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
-  }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
-  handleKeyDown = e => {
+  const handleKeyDown = e => {
     if (e.code === 'Escape') {
-      this.props.onClose();
+      onClose();
     }
   };
 
-  handleBackdropClick = e => {
+  const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
-      this.props.onClose();
+      onClose();
     }
   };
 
-  render() {
-    return (
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        zIndex: '1200',
+      }}
+      onClick={handleBackdropClick}
+    >
       <div
         style={{
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          width: '100vw',
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          zIndex: '1200',
+          maxWidth: 'calc(100vw - 48px)',
+          maxHeight: 'calc(100vh - 24px)',
         }}
-        onClick={this.handleBackdropClick}
       >
-        <div
-          style={{
-            maxWidth: 'calc(100vw - 48px)',
-            maxHeight: 'calc(100vh - 24px)',
-          }}
-        >
-          <img src={this.props.largeImageUrl} alt={this.props.description} />
-        </div>
+        <img src={largeImageUrl} alt={description} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 Event.propTypes = {

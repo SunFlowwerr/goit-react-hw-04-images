@@ -50,7 +50,7 @@ export function Modal({ largeImageUrl, description, onClose }) {
   );
 }
 
-Event.propTypes = {
+Modal.propTypes = {
   largeImageUrl: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,

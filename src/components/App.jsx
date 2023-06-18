@@ -13,7 +13,6 @@ export function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,7 +56,6 @@ export function App() {
     <div>
       <Searchbar onSubmit={handleSearchbarSubmit}></Searchbar>
       {error && <h2>Please, enter correct data!</h2>}
-      {loading && <Loader></Loader>}
       <ToastContainer autoClose={3000}></ToastContainer>
       {searchResult.length > 0 && (
         <ImageGallery
@@ -75,6 +73,7 @@ export function App() {
           onClose={toggleModal}
         ></Modal>
       )}
+      {loading && <Loader></Loader>}
     </div>
   );
 }

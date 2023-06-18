@@ -22,7 +22,7 @@ export const ImageGalleryItem = ({ webImage, description, openModal }) => {
   );
 };
 
-Event.propTypes = {
+ImageGalleryItem.propTypes = {
   webImage: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };

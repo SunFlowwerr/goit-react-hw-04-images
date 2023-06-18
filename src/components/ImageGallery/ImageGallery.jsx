@@ -30,7 +30,7 @@ export const ImageGallery = ({ images, openModal }) => {
   );
 };
 
-Event.propTypes = {
+ImageGallery.propTypes = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
